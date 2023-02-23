@@ -1,0 +1,14 @@
+* {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Avenir', 'Helvetica', 'sans-serif';
+}
+
+:root {
+  background-image: linear-gradient(to bottom, #1f69bd, #39a4f0);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
