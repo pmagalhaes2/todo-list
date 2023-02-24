@@ -44,7 +44,7 @@
 
 .task-list {
   display: flex;
-  background-image: linear-gradient(to bottom, #044ca0, #2c7cda );
+  background-image: linear-gradient(to bottom, #044ca0, #2c7cda);
   width: 100%;
   padding: 1rem;
   margin: 0.5rem 0;
@@ -68,4 +68,21 @@
 .icons-container > svg {
   cursor: pointer;
   color: #eeeeee;
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 5rem;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .form,
+  .task-list {
+    width: 80%;
+  }
+
+  .form > svg {
+    width: 2.5rem;
+  }
 }
