@@ -7,7 +7,7 @@
 }
 
 :root {
-  background-image: linear-gradient(to bottom, #1f69bd, #39a4f0);
+  background-color: #1B1B1B;
   min-height: 100vh;
   display: flex;
   justify-content: center;

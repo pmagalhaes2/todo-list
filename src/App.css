@@ -7,7 +7,7 @@
 .main h1 {
   text-transform: uppercase;
   font-weight: 100;
-  color: white;
+  color: #ffffff;
   opacity: 0.8;
   margin: 2.1875rem 0;
   letter-spacing: 0.375rem;
@@ -19,35 +19,33 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+  border: 2px solid #2c7cda;
+  border-radius: 0.2rem;
 }
 
 .form input {
-  font-family: 'Poppins', sans-serif;
-  background-color: #EEEEEE;
-  width: 30rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #eeeeee;
+  width: 35rem;
   height: 3rem;
   padding: 1rem;
   outline: none;
-  border-radius: 0.2rem 0 0 0.2rem;
-  color: #0C0910;
+  color: #0c0910;
 }
 
 .form > svg {
   cursor: pointer;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   width: 2rem;
   height: 3rem;
-  color: #6073C3;;
+  color: #044ca0;
   padding-right: 0.8rem;
-  border-radius: 0 0.2rem 0.2rem 0;
 }
 
 .task-list {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  background-color: #0C0910;
-  width: 32rem;
+  background-image: linear-gradient(to bottom, #044ca0, #2c7cda );
+  width: 100%;
   padding: 1rem;
   margin: 0.5rem 0;
   list-style: none;
@@ -57,10 +55,17 @@
 .task-list li {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  width: 35rem;
 }
 
-.task-list li > svg {
+.icons-container {
+  display: flex;
+  justify-content: center;
+  width: 3rem;
+  gap: 1rem;
+}
+
+.icons-container > svg {
   cursor: pointer;
-  color: #6073C3;
+  color: #eeeeee;
 }

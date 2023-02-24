@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const CheckboxContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   gap: 1.5rem;
-  margin-right: 18rem;
+  width: 90%;
 `;
 export const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
    width: 23px;
