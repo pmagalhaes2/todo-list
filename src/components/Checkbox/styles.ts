@@ -5,6 +5,7 @@ export const CheckboxContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  margin-right: 18rem;
 `;
 export const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
    width: 23px;

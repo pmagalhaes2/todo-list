@@ -57,8 +57,7 @@
 .task-list li {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
+  justify-content: space-around;
 }
 
 .task-list li > svg {
