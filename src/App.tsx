@@ -1,9 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import "./App.css";
 import { FaPlus, FaTrashAlt } from "react-icons/fa";
 import { Checkbox } from "./components/Checkbox/Checkbox";
@@ -18,7 +13,9 @@ function App() {
 
   const handleAddItemToList = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!task) return;
+    if (!task || itemsList.includes(task)) {
+      return <Checkbox title="teste" />;
+    }
     setItemsList([...itemsList, task]);
     setTask("");
   };
@@ -43,10 +40,10 @@ function App() {
       {itemsList.map((item, index) => {
         return (
           <ul className="task-list" key={index}>
-            <li>
-              <Checkbox text={item} />
-              <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
-            </li>
+              <li>
+                <Checkbox text={item} />
+                <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
+              </li>
           </ul>
         );
       })}
