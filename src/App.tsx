@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import "./App.css";
-import { FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaPlus, FaTrashAlt, FaEdit } from "react-icons/fa";
 import { Checkbox } from "./components/Checkbox/Checkbox";
 
 function App() {
@@ -11,11 +11,9 @@ function App() {
     setTask(e.target.value);
   };
 
-  const handleAddItemToList = (e: FormEvent<HTMLFormElement>) => {
+  const handleAddItemToList = (e: FormEvent<HTMLFormElement> | MouseEvent<SVGElement>) => {
     e.preventDefault();
-    if (!task || itemsList.includes(task)) {
-      return <Checkbox title="teste" />;
-    }
+    if (!task || itemsList.includes(task)) return;
     setItemsList([...itemsList, task]);
     setTask("");
   };
@@ -23,6 +21,14 @@ function App() {
   const handleDelete = (e: MouseEvent<SVGElement>, index: number) => {
     itemsList.splice(index, 1);
     setItemsList([...itemsList]);
+  };
+
+  const handleEdit = (e: MouseEvent<SVGElement>, id: number) => {
+    itemsList.filter((item, index) => {
+      if (index === id){
+        setTask(item)
+      }
+    });
   };
 
   return (
@@ -35,15 +41,18 @@ function App() {
           value={task}
           onChange={handleChange}
         />
-        <FaPlus />
+        <FaPlus onClick={handleAddItemToList} />
       </form>
       {itemsList.map((item, index) => {
         return (
           <ul className="task-list" key={index}>
-              <li>
-                <Checkbox text={item} />
-                <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
-              </li>
+            <li>
+              <Checkbox text={item} />
+              <div className="icons-container">
+              <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
+              <FaEdit onClick={(e) => handleEdit(e, index)} />
+              </div>
+            </li>
           </ul>
         );
       })}
