@@ -1,6 +1,12 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  MouseEvent,
+  useState,
+} from "react";
 import "./App.css";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrashAlt } from "react-icons/fa";
+import { Checkbox } from "./components/Checkbox/Checkbox";
 
 function App() {
   const [task, setTask] = useState("");
@@ -17,6 +23,11 @@ function App() {
     setTask("");
   };
 
+  const handleDelete = (e: MouseEvent<SVGElement>, index: number) => {
+    itemsList.splice(index, 1);
+    setItemsList([...itemsList]);
+  };
+
   return (
     <div className="main">
       <h1>Todo List</h1>
@@ -27,19 +38,18 @@ function App() {
           value={task}
           onChange={handleChange}
         />
-        <button>
-          <FaPlus />
-        </button>
+        <FaPlus />
       </form>
-      <ul className="task-list">
-        {itemsList.map((item, index) => {
-          return (
-            <li key={index}>
-              {item}
+      {itemsList.map((item, index) => {
+        return (
+          <ul className="task-list" key={index}>
+            <li>
+              <Checkbox text={item} />
+              <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
             </li>
-          );
-        })}
-      </ul>
+          </ul>
+        );
+      })}
     </div>
   );
 }
