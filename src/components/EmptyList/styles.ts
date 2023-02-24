@@ -7,12 +7,16 @@ export const Container = styled.div`
   justify-content: center;
   gap: 0.5rem;
 
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+
   > svg {
     width: 2rem;
     height: 2rem;
     color: #2c7cda;
     opacity: 0.8;
-    margin: 3rem 0 1rem;
+    margin: 2rem 0 1rem;
   }
 `;
 
