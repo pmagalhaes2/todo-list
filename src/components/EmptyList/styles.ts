@@ -24,6 +24,10 @@ export const Title = styled.h3`
   color: #ffffff;
   opacity: 0.8;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Text = styled.p`
