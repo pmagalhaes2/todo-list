@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import "./App.css";
 import { FaPlus, FaTrashAlt, FaEdit } from "react-icons/fa";
 import { Checkbox } from "./components/Checkbox/Checkbox";
+import { EmptyList } from "./components/EmptyList/EmptyList";
 
 function App() {
   const [task, setTask] = useState("");
@@ -11,7 +12,9 @@ function App() {
     setTask(e.target.value);
   };
 
-  const handleAddItemToList = (e: FormEvent<HTMLFormElement> | MouseEvent<SVGElement>) => {
+  const handleAddItemToList = (
+    e: FormEvent<HTMLFormElement> | MouseEvent<SVGElement>
+  ) => {
     e.preventDefault();
     if (!task || itemsList.includes(task)) return;
     setItemsList([...itemsList, task]);
@@ -25,8 +28,8 @@ function App() {
 
   const handleEdit = (e: MouseEvent<SVGElement>, id: number) => {
     itemsList.filter((item, index) => {
-      if (index === id){
-        setTask(item)
+      if (index === id) {
+        setTask(item);
       }
     });
   };
@@ -43,19 +46,24 @@ function App() {
         />
         <FaPlus onClick={handleAddItemToList} />
       </form>
-      {itemsList.map((item, index) => {
-        return (
-          <ul className="task-list" key={index}>
-            <li>
-              <Checkbox text={item} />
-              <div className="icons-container">
-              <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
-              <FaEdit onClick={(e) => handleEdit(e, index)} />
-              </div>
-            </li>
-          </ul>
-        );
-      })}
+
+      {itemsList.length > 0 ? (
+        itemsList.map((item, index) => {
+          return (
+            <ul className="task-list" key={index}>
+              <li>
+                <Checkbox text={item} />
+                <div className="icons-container">
+                  <FaTrashAlt onClick={(e) => handleDelete(e, index)} />
+                  <FaEdit onClick={(e) => handleEdit(e, index)} />
+                </div>
+              </li>
+            </ul>
+          );
+        })
+      ) : (
+        <EmptyList />
+      )}
     </div>
   );
 }
