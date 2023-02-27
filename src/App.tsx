@@ -1,9 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from "react";
 import "./App.css";
 import { FaPlus, FaTrashAlt, FaEdit } from "react-icons/fa";
 import { Checkbox } from "./components/Checkbox/Checkbox";
@@ -11,9 +6,17 @@ import { EmptyList } from "./components/EmptyList/EmptyList";
 
 function App() {
   const [task, setTask] = useState("");
-  const [itemsList, setItemsList] = useState<any[]>([]);
+  const [itemsList, setItemsList] = useState(
+    !localStorage.getItem("tasks")
+      ? []
+      : JSON.parse(localStorage.getItem("tasks"))
+  );
   const [index, setIndex] = useState(-1);
   const [taskError, setTaskError] = useState(false);
+
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(itemsList));
+  }, [itemsList]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTask(e.target.value);
@@ -53,7 +56,7 @@ function App() {
   const handleEdit = (e: MouseEvent<SVGElement>, id: number) => {
     setIndex(id);
 
-    itemsList.filter((item, index) => {
+    itemsList.filter((item: any, index: number) => {
       if (index === id) {
         setTask(item);
       }
@@ -78,7 +81,7 @@ function App() {
       </form>
 
       {itemsList.length > 0 ? (
-        itemsList.map((item, index) => {
+        itemsList.map((item: any, index: number) => {
           return (
             <ul className="task-list" key={index}>
               <li>
