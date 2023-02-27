@@ -9,7 +9,7 @@ function App() {
   const [itemsList, setItemsList] = useState(
     !localStorage.getItem("tasks")
       ? []
-      : JSON.parse(localStorage.getItem("tasks"))
+      : JSON.parse(localStorage.getItem("tasks")!)
   );
   const [index, setIndex] = useState(-1);
   const [taskError, setTaskError] = useState(false);
