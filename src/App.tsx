@@ -1,4 +1,9 @@
-import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  MouseEvent,
+  useState,
+} from "react";
 import "./App.css";
 import { FaPlus, FaTrashAlt, FaEdit } from "react-icons/fa";
 import { Checkbox } from "./components/Checkbox/Checkbox";
@@ -8,6 +13,7 @@ function App() {
   const [task, setTask] = useState("");
   const [itemsList, setItemsList] = useState<any[]>([]);
   const [index, setIndex] = useState(-1);
+  const [taskError, setTaskError] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTask(e.target.value);
@@ -17,9 +23,16 @@ function App() {
     e: FormEvent<HTMLFormElement> | MouseEvent<SVGElement>
   ) => {
     e.preventDefault();
-    if (!task || itemsList.includes(task)) return;
+
+    if (!task || itemsList.includes(task.trim()) || task.trim().length === 0) {
+      setTaskError(true);
+      setTask("");
+      return;
+    }
 
     const editedListItems = [...itemsList];
+
+    setTaskError(false);
 
     if (index === -1) {
       setItemsList([...itemsList, task]);
@@ -28,6 +41,7 @@ function App() {
       editedListItems[index] = task;
       setItemsList([...editedListItems]);
       setIndex(-1);
+      setTask("");
     }
   };
 
@@ -52,7 +66,11 @@ function App() {
       <form className="form" onSubmit={handleAddItemToList}>
         <input
           type="text"
-          placeholder="Enter your next task"
+          placeholder={
+            taskError
+              ? "Empty or already existing task!"
+              : "Enter your next task"
+          }
           value={task}
           onChange={handleChange}
         />
