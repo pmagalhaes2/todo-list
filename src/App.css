@@ -83,8 +83,7 @@
     font-size: 2rem;
   }
 
-  .form,
-  .task-list {
+  .form {
     width: 90%;
     margin: 1rem auto;
   }
@@ -92,5 +91,10 @@
   .form > svg {
     width: 3rem;
     padding: 0  0.4rem;
+  }
+
+  .task-list {
+    width: 90%;
+    margin: 0.5 auto;
   }
 }
